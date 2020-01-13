@@ -1,0 +1,293 @@
+install.packages(c("leaflet.extras", "readxl"))
+library(shiny)
+library(leaflet)
+library(leaflet.extras)
+library(readxl)
+help("leaflet")
+r_colors <- rgb(t(col2rgb(colors()) / 255))
+names(r_colors) <- colors()
+colors()
+help(t)
+ui <- fluidPage(
+h3("현재 위치 찾기 서비스"),
+leafletOutput("mymap"),
+numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")
+)
+server <- function(input, output, session) {
+output$mymap <- renderLeaflet({
+points <- eventReactive(input$now_place, {
+cbind(input$longtitude, input$latitude)
+}, ignoreNULL = FALSE)
+leaflet() %>%
+addProviderTiles(providers$CartoDB.DarkMatter,
+options = providerTileOptions(noWrap = TRUE)
+) %>%
+addWebGLHeatmap(lng=~longtitude, lat=~latitude, size = 50) %>%
+addMarkers(data = points(), popup="현재위치")
+})
+}
+shinyApp(ui, server)
+values = rep(1,657)
+data = cbind(r_colors,values)
+data
+plot(data)
+plot(x = c(1:657), y = values, col = r_colors)
+help(plot)
+plot(x = c(1:657), y = values, col = r_colors,type = '■')
+plot(x = c(1:657), y = values, col = r_colors)
+help(rgb)
+rgb(255,1,222)
+rgb(c(255,1,222))
+red
+'red'
+col2rgb('red')
+col2rgb('orange')
+class(col2rgb('orange'))
+col2rgb('orange')/255
+t(col2rgb('orange')/255)
+class(t(col2rgb('orange')/255))
+help(t)
+rgb(1,0.8,.5)
+help(h3)
+shinyApp(ui, server)
+help("leaflet")
+help("fluidPage")
+h3("현재 위치 찾기 서비스"),
+leafletOutput("mymap"),
+numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")
+h3('asdasd')
+leafletOutput('mymap')
+numericInput('latitude', '위도', 35.2279246, min = 35, max = 36)
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129)
+actionButton("now_place", "위치 찾기")
+ui = fluidPage(
+titlePanel('현재 위치 찾기 서비스')
+)
+server = function(input,output){}
+shinyApp(ui, server)
+ui <- fluidPage(
+h3("현재 위치 찾기 서비스"),
+leafletOutput("mymap"),
+numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")
+)
+server <- function(input, output, session) {
+output$mymap = renderLeaflet({
+point <- eventReactive(input$now_place, {
+cbind(input$longtitude, input$latitude)
+}, ignoreNULL = FALSE)
+leaflet() %>%
+addProviderTiles(providers$CartoDB.DarkMatter,
+options = providerTileOptions(noWrap = TRUE)
+) %>%
+#      addWebGLHeatmap(lng=~longtitude, lat=~latitude, size = 50) %>%
+addMarkers(data = point(), popup="현재위치")
+})
+}
+shinyApp(ui, server)
+ui <- fluidPage(
+h3("현재 위치 찾기 서비스"),
+sidebarLayout(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")),
+mainPanel(leafletOutput("mymap"))
+)
+sidebarLayout(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기"))
+mainPanel(leafletOutput("mymap"))
+ui <- fluidPage(
+h3("현재 위치 찾기 서비스"),
+sidePanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")),
+mainPanel(leafletOutput("mymap"))
+)
+ui <- fluidPage(
+h3("현재 위치 찾기 서비스"),
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")),
+mainPanel(leafletOutput("mymap"))
+)
+shinyApp(ui, server)
+runExample("01_hello")
+ui <- fluidPage(
+h3("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기"))
+),
+mainPanel(leafletOutput("mymap"))
+)
+ui <- fluidPage(
+h3("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")),
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기"))
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+shinyApp(ui, server)
+ui <- fluidPage(
+h3("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")),
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+ui <- fluidPage(
+h3("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기"))
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+ui <- fluidPage(
+h3("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기"))
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+ui <- fluidPage(
+titlePanel("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기"))
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+ui <- fluidPage(
+titlePanel("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기"))
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+help(sidebarLayout)
+ui <- fluidPage(
+titlePanel("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")),
+mainPanel()
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+shinyApp(ui, server)
+runExample("01_hello")
+ui <- fluidPage(
+titlePanel("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+)
+ui <- fluidPage(
+titlePanel("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(numericInput('latitude', '위도', 35.2279246, min = 35, max = 36), #디폴드값은 창원시청 기준
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+)
+shinyApp(ui, server)
+providers
+library(shiny)
+library(leaflet)
+library(leaflet.extras)
+library(readxl)
+providers
+providers$OpenStreetMap
+r_colors <- rgb(t(col2rgb(colors()) / 255))
+names(r_colors) <- colors()
+ui <- fluidPage(
+titlePanel("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(
+#디폴드값은 창원시청 기준
+numericInput('latitude', '위도', 35.2279246, min = 35, max = 36),
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+)
+server <- function(input, output, session) {
+output$mymap = renderLeaflet({
+point = eventReactive(
+input$now_place,
+{ cbind(input$longtitude, input$latitude) },
+ignoreNULL = FALSE)
+leaflet() %>%
+addProviderTiles(
+providers$Wikimedia,
+options = providerTileOptions(noWrap = TRUE)) %>%
+#        addWebGLHeatmap(lng=~longtitude, lat=~latitude, size = 50) %>%
+addMarkers(data = point(), popup="현재위치")
+})
+}
+ui = fluidPage(
+titlePanel('현재 위치 찾기 서비스')
+)
+ui <- fluidPage(
+titlePanel("현재 위치 찾기 서비스"),
+sidebarLayout(
+sidebarPanel(
+#디폴드값은 창원시청 기준
+numericInput('latitude', '위도', 35.2279246, min = 35, max = 36),
+numericInput('longtitude', '경도', 128.6812436, min = 128, max = 129),
+actionButton("now_place", "위치 찾기")
+),
+mainPanel(
+leafletOutput("mymap")
+)
+)
+)
+shinyApp(ui, server)
